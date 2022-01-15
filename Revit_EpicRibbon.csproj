@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AdWindows, Version=3.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Revit.AdWindows.x64.2021.0.0\lib\net48\AdWindows.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="RevitAPI">
       <HintPath>..\..\..\..\..\..\Program Files\Autodesk\Revit 2019\RevitAPI.dll</HintPath>
@@ -39,7 +42,10 @@
       <HintPath>..\..\..\..\..\..\Program Files\Autodesk\Revit 2019\RevitAPIUI.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Activities.Core.Presentation" />
+    <Reference Include="System.Activities.Presentation" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Presentation" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -50,6 +56,38 @@
   <ItemGroup>
     <Compile Include="EpicApp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ICONS\1_16.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ICONS\LumiSnap_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ICONS\LumiSnap_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ICONS\SysChanger_EL_32.png" />
+    <EmbeddedResource Include="ICONS\SysChanger_EL_EIPlus_16.png" />
+    <EmbeddedResource Include="ICONS\SysChanger_EL_EI_16.png" />
+    <EmbeddedResource Include="ICONS\SysChanger_EL_M_16.png" />
+    <EmbeddedResource Include="ICONS\SysChanger_LE_16.png" />
+    <EmbeddedResource Include="ICONS\SysChanger_LG_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ICONS\Test2_16.png" />
+    <EmbeddedResource Include="ICONS\Test2_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ICONS\SysChanger_ESS_32.png" />
+    <EmbeddedResource Include="ICONS\SysChanger_ESS_EI_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ICONS\SettingsGear_16.png" />
+    <EmbeddedResource Include="ICONS\SettingsGear_32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
