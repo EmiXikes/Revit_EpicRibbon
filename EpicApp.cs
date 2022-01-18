@@ -153,12 +153,46 @@ namespace Revit_EpicRibbon
 
             #endregion
 
+            #region EpicLumi
+
+            String dllPathLumi = @"C:\Users\xikes\source\repos\EpicLumImporter\bin\Debug\EpicLumImporter.dll";
+
+            PushButtonData btn_LumiMain = new PushButtonData("btn_lumiMain", "Lumi", dllPathLumi, "EpicLumImporter.LumImporter");
+            PushButtonData btn_LumiInfoBlocks = new PushButtonData("btn_lumiInfoBlocks", "nfoImp", dllPathLumi, "EpicLumImporter.LumImportInfoBlocks");
+            PushButtonData btn_LumiAnno = new PushButtonData("btn_lumiAnno", "Tag", dllPathLumi, "EpicLumImporter.LumiAnnotate");
+            PushButtonData btn_LumiAnnoUpdate = new PushButtonData("btn_lumiAnnoUpdate", "Update", dllPathLumi, "EpicLumImporter.LumiAnnotationUpdate");
+
+            // Create a ribbon panel
+            RibbonPanel ribbonPanelLumi = application.CreateRibbonPanel(tabName, "Epic Lumi");
+
+            btn = ribbonPanelLumi.AddItem(btn_LumiMain) as PushButton;
+            //btn.Image = PngImageSource("Revit_EpicRibbon.ICONS.LumiSnap_16.png");
+            //btn.LargeImage = PngImageSource("Revit_EpicRibbon.ICONS.LumiSnap_32.png");
+
+            btn = ribbonPanelLumi.AddItem(btn_LumiInfoBlocks) as PushButton;
+            //btn.Image = PngImageSource("Revit_EpicRibbon.ICONS.LumiSnap_16.png");
+            //btn.LargeImage = PngImageSource("Revit_EpicRibbon.ICONS.LumiSnap_32.png");
+
+            btn = ribbonPanelLumi.AddItem(btn_LumiAnno) as PushButton;
+            //btn.Image = PngImageSource("Revit_EpicRibbon.ICONS.LumiSnap_16.png");
+            //btn.LargeImage = PngImageSource("Revit_EpicRibbon.ICONS.LumiSnap_32.png");
+
+            btn = ribbonPanelLumi.AddItem(btn_LumiAnnoUpdate) as PushButton;
+            //btn.Image = PngImageSource("Revit_EpicRibbon.ICONS.LumiSnap_16.png");
+            //btn.LargeImage = PngImageSource("Revit_EpicRibbon.ICONS.LumiSnap_32.png");
+
+            //ribbonPanelLumi.AddSeparator();
+
+            #endregion
+
             #region LumiSnap
 
+            //String dllPathLumiSnap = @"C:\Epic\EpicToolsAddinForRevit\LumiSnap\LumiSnap.dll";
             String dllPathLumiSnap = @"C:\Users\xikes\source\repos\LumiSnap\bin\Debug\LumiSnap.dll";
 
             PushButtonData btn_LumiSnap = new PushButtonData("btn_lumisnap", "Lumi Snap", dllPathLumiSnap, "EpicLumiSnap.LumiSnap");
             PushButtonData btn_LumiSnapSettings = new PushButtonData("btn_lumisnapsettings", "Settings", dllPathLumiSnap, "EpicLumiSnap.LumiSnapSettings");
+            PushButtonData btn_LumiSnapInfo = new PushButtonData("btn_lumisnapInfo", "Info", dllPathLumiSnap, "EpicLumiSnap.LumiSnapInfo");
 
             // Create a ribbon panel
             RibbonPanel ribbonPanelLumiSnap = application.CreateRibbonPanel(tabName, "Lumi Snap");
@@ -170,9 +204,25 @@ namespace Revit_EpicRibbon
 
             ribbonPanelLumiSnap.AddSeparator();
 
-            btn = ribbonPanelLumiSnap.AddItem(btn_LumiSnapSettings) as PushButton;
-            btn.Image = PngImageSource("Revit_EpicRibbon.ICONS.SettingsGear_16.png");
-            btn.LargeImage = PngImageSource("Revit_EpicRibbon.ICONS.SettingsGear_32.png");
+            var stackLumiSnap = ribbonPanelLumiSnap.AddStackedItems(btn_LumiSnapSettings, btn_LumiSnapInfo);
+            List<ImageSource> imageSourcesLumiSnap = new List<ImageSource>()
+            {
+                PngImageSource("Revit_EpicRibbon.ICONS.SettingsGear_16.png"),
+                PngImageSource("Revit_EpicRibbon.ICONS.LumiSnapInfo_16.png"),
+            };
+            for (int i = 0; i < stackLumiSnap.Count; i++)
+            {
+                btn = stackLumiSnap[i] as PushButton;
+                btn.Image = imageSourcesLumiSnap[i];
+            }
+
+            //btn = ribbonPanelLumiSnap.AddItem(btn_LumiSnapSettings) as PushButton;
+            //btn.Image = PngImageSource("Revit_EpicRibbon.ICONS.SettingsGear_16.png");
+            //btn.LargeImage = PngImageSource("Revit_EpicRibbon.ICONS.SettingsGear_32.png");
+
+            //btn = ribbonPanelLumiSnap.AddItem(btn_LumiSnapInfo) as PushButton;
+            //btn.Image = PngImageSource("Revit_EpicRibbon.ICONS.LumiSnapInfo_16.png");
+            //btn.LargeImage = PngImageSource("Revit_EpicRibbon.ICONS.LumiSnapInfo_32.png");
 
             #endregion
 

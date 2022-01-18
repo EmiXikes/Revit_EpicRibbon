@@ -89,5 +89,9 @@
     <EmbeddedResource Include="ICONS\SettingsGear_16.png" />
     <EmbeddedResource Include="ICONS\SettingsGear_32.png" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ICONS\LumiSnapInfo_16.png" />
+    <EmbeddedResource Include="ICONS\LumiSnapInfo_32.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
