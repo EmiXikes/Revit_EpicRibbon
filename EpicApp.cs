@@ -155,56 +155,64 @@ namespace Revit_EpicRibbon
 
             #region EpicLumi
 
-            String dllPathLumi = @"C:\Users\xikes\source\repos\EpicLumImporter\bin\Debug\EpicLumImporter.dll";
+            //String dllPathLumi = @"C:\Epic\EpicToolsAddinForRevit\Lumi\EpicLumi.dll";
+            String dllPathLumi = @"C:\Users\xikes\source\repos\EpicLumImporter\bin\Debug\EpicLumi.dll";
 
-            PushButtonData btn_LumiMain = new PushButtonData("btn_lumiMain", "Lumi", dllPathLumi, "EpicLumImporter.LumImporter");
-            PushButtonData btn_LumiInfoBlocks = new PushButtonData("btn_lumiInfoBlocks", "nfoImp", dllPathLumi, "EpicLumImporter.LumImportInfoBlocks");
-            PushButtonData btn_LumiAnno = new PushButtonData("btn_lumiAnno", "Tag", dllPathLumi, "EpicLumImporter.LumiAnnotate");
-            PushButtonData btn_LumiAnnoUpdate = new PushButtonData("btn_lumiAnnoUpdate", "Update", dllPathLumi, "EpicLumImporter.LumiAnnotationUpdate");
+            PushButtonData btn_LumiMain = new PushButtonData("btn_lumiMain", "Lumi", dllPathLumi, "EpicLumi.Lumi");
+            PushButtonData btn_LumiInfoBlocks = new PushButtonData("btn_lumiInfoBlocks", "nfoImp", dllPathLumi, "EpicLumi.LumiInfoImport");
+            PushButtonData btn_LumiAnno = new PushButtonData("btn_lumiAnno", "Tag", dllPathLumi, "EpicLumi.LumiTag");
+            PushButtonData btn_LumiAnnoUpdate = new PushButtonData("btn_lumiAnnoUpdate", "Update", dllPathLumi, "EpicLumi.LumiTagUpdate");
 
             // Create a ribbon panel
             RibbonPanel ribbonPanelLumi = application.CreateRibbonPanel(tabName, "Epic Lumi");
 
             btn = ribbonPanelLumi.AddItem(btn_LumiMain) as PushButton;
-            //btn.Image = PngImageSource("Revit_EpicRibbon.ICONS.LumiSnap_16.png");
-            //btn.LargeImage = PngImageSource("Revit_EpicRibbon.ICONS.LumiSnap_32.png");
+            btn.Image = PngImageSource("Revit_EpicRibbon.ICONS.LumiSnap_16.png");
+            btn.LargeImage = PngImageSource("Revit_EpicRibbon.ICONS.LumiMain.png");
 
             btn = ribbonPanelLumi.AddItem(btn_LumiInfoBlocks) as PushButton;
-            //btn.Image = PngImageSource("Revit_EpicRibbon.ICONS.LumiSnap_16.png");
-            //btn.LargeImage = PngImageSource("Revit_EpicRibbon.ICONS.LumiSnap_32.png");
+            btn.Image = PngImageSource("Revit_EpicRibbon.ICONS.ImportInfo2_16.png");
+            btn.LargeImage = PngImageSource("Revit_EpicRibbon.ICONS.ImportInfo2_32.png");
 
             btn = ribbonPanelLumi.AddItem(btn_LumiAnno) as PushButton;
-            //btn.Image = PngImageSource("Revit_EpicRibbon.ICONS.LumiSnap_16.png");
-            //btn.LargeImage = PngImageSource("Revit_EpicRibbon.ICONS.LumiSnap_32.png");
+            btn.Image = PngImageSource("Revit_EpicRibbon.ICONS.LumiTag2_16.png");
+            btn.LargeImage = PngImageSource("Revit_EpicRibbon.ICONS.LumiTag2_32.png");
 
             btn = ribbonPanelLumi.AddItem(btn_LumiAnnoUpdate) as PushButton;
-            //btn.Image = PngImageSource("Revit_EpicRibbon.ICONS.LumiSnap_16.png");
-            //btn.LargeImage = PngImageSource("Revit_EpicRibbon.ICONS.LumiSnap_32.png");
+            btn.Image = PngImageSource("Revit_EpicRibbon.ICONS.LumiTagUpdate_16.png");
+            btn.LargeImage = PngImageSource("Revit_EpicRibbon.ICONS.LumiTagUpdate_32.png");
 
-            //ribbonPanelLumi.AddSeparator();
+            ribbonPanelLumi.AddSeparator();
 
             #endregion
 
             #region LumiSnap
 
             //String dllPathLumiSnap = @"C:\Epic\EpicToolsAddinForRevit\LumiSnap\LumiSnap.dll";
-            String dllPathLumiSnap = @"C:\Users\xikes\source\repos\LumiSnap\bin\Debug\LumiSnap.dll";
+            //String dllPathLumiSnap = @"C:\Users\xikes\source\repos\LumiSnap\bin\Debug\LumiSnap.dll";
+            String dllPathLumiSnap = dllPathLumi;
 
-            PushButtonData btn_LumiSnap = new PushButtonData("btn_lumisnap", "Lumi Snap", dllPathLumiSnap, "EpicLumiSnap.LumiSnap");
-            PushButtonData btn_LumiSnapSettings = new PushButtonData("btn_lumisnapsettings", "Settings", dllPathLumiSnap, "EpicLumiSnap.LumiSnapSettings");
-            PushButtonData btn_LumiSnapInfo = new PushButtonData("btn_lumisnapInfo", "Info", dllPathLumiSnap, "EpicLumiSnap.LumiSnapInfo");
+            PushButtonData btn_LumiSnap = new PushButtonData("btn_lumisnap", "Lumi Snap", dllPathLumiSnap, "EpicLumi.LumiSnap");
+            PushButtonData btn_LumiSnapSettings = new PushButtonData("btn_lumisnapsettings", "Settings", dllPathLumiSnap, "EpicLumi.LumiSnapSettings");
+            PushButtonData btn_LumiSnapInfo = new PushButtonData("btn_lumisnapInfo", "Info", dllPathLumiSnap, "EpicLumi.LumiSnapInfo");
+
+            PushButtonData btn_LumiElevChange = new PushButtonData("btn_lumiElevChange", "Elv.Ch", dllPathLumiSnap, "EpicLumi.LumiElevationChange");
+            PushButtonData btn_LumiFlip = new PushButtonData("btn_lumiFlip", "Flip", dllPathLumiSnap, "EpicLumi.LumiFlip");
 
             // Create a ribbon panel
-            RibbonPanel ribbonPanelLumiSnap = application.CreateRibbonPanel(tabName, "Lumi Snap");
+            //RibbonPanel ribbonPanelLumiSnap = application.CreateRibbonPanel(tabName, "Lumi Snap");
 
 
-            btn = ribbonPanelLumiSnap.AddItem(btn_LumiSnap) as PushButton;
+            btn = ribbonPanelLumi.AddItem(btn_LumiSnap) as PushButton;
             btn.Image = PngImageSource("Revit_EpicRibbon.ICONS.LumiSnap_16.png");
             btn.LargeImage = PngImageSource("Revit_EpicRibbon.ICONS.LumiSnap_32.png");
 
-            ribbonPanelLumiSnap.AddSeparator();
+            btn = ribbonPanelLumi.AddItem(btn_LumiElevChange) as PushButton;
+            btn = ribbonPanelLumi.AddItem(btn_LumiFlip) as PushButton;
 
-            var stackLumiSnap = ribbonPanelLumiSnap.AddStackedItems(btn_LumiSnapSettings, btn_LumiSnapInfo);
+            //ribbonPanelLumiSnap.AddSeparator();
+
+            var stackLumiSnap = ribbonPanelLumi.AddStackedItems(btn_LumiSnapSettings, btn_LumiSnapInfo);
             List<ImageSource> imageSourcesLumiSnap = new List<ImageSource>()
             {
                 PngImageSource("Revit_EpicRibbon.ICONS.SettingsGear_16.png"),

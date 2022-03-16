@@ -93,5 +93,24 @@
     <EmbeddedResource Include="ICONS\LumiSnapInfo_16.png" />
     <EmbeddedResource Include="ICONS\LumiSnapInfo_32.png" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ICONS\LumiTagUpdate_16.png" />
+    <EmbeddedResource Include="ICONS\LumiTagUpdate_32.png" />
+    <EmbeddedResource Include="ICONS\LumiTag_16.png" />
+    <EmbeddedResource Include="ICONS\LumiTag_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ICONS\ImportInfo_16.png" />
+    <EmbeddedResource Include="ICONS\ImportInfo_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ICONS\ImportInfo2_16.png" />
+    <EmbeddedResource Include="ICONS\ImportInfo2_32.png" />
+    <EmbeddedResource Include="ICONS\LumiTag2_16.png" />
+    <EmbeddedResource Include="ICONS\LumiTag2_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ICONS\LumiMain.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
