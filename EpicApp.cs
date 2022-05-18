@@ -6,7 +6,8 @@ using System.Drawing;
 using System.Activities.Presentation;
 using System.IO;
 using System.Collections.Generic;
-using adWin = Autodesk.Windows;
+using System.Reflection;
+//using adWin = Autodesk.Windows;
 
 namespace Revit_EpicRibbon
 {
@@ -25,15 +26,15 @@ namespace Revit_EpicRibbon
             String tabName = "Epic Tools";
             application.CreateRibbonTab(tabName);
 
-
-
-
+            var BaseLocation = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            BaseLocation = System.IO.Path.Combine(BaseLocation, "..", "Apps");
 
             #region System Changer
 
-            String dllPathSystem = @"C:\Epic\EpicToolsAddinForRevit\Libs\Revit_SystemSetter.dll";
+            String dllPathSystem;
             //String dllPathSystem = @"C:\Users\User\source\repos\_Revit\Revit_SystemSetter\bin\Debug\Revit_SystemSetter.dll";
-
+            //dllPathSystem = @"C:\Epic\EpicToolsAddinForRevit\Libs\Revit_SystemSetter.dll";
+            dllPathSystem = System.IO.Path.Combine(BaseLocation, "SystemChanger", "Revit_SystemSetter.dll");
 
             // EL
             PushButtonData btn_H2 = new PushButtonData("btn_H2", "EL", dllPathSystem, "Revit_SystemSetter.SetSystem_H2");
@@ -62,6 +63,7 @@ namespace Revit_EpicRibbon
             //Lightning
             PushButtonData btn_H701 = new PushButtonData("btn_H701", "LGTNG" ,dllPathSystem, "Revit_SystemSetter.SetSystem_H701");
             PushButtonData btn_H702 = new PushButtonData("btn_H702", "LGTNG-EX", dllPathSystem, "Revit_SystemSetter.SetSystem_H702");
+            PushButtonData btn_H703 = new PushButtonData("btn_H703", "EARTH", dllPathSystem, "Revit_SystemSetter.SetSystem_H703");
 
 
 
@@ -133,15 +135,18 @@ namespace Revit_EpicRibbon
             ribbonPanelSystem.AddSeparator();
 
             // Lightning
-            ribbonPanelSystem.AddStackedItems(btn_H701, btn_H702);
+            ribbonPanelSystem.AddStackedItems(btn_H701, btn_H702, btn_H703);
             ribbonPanelSystem.AddSeparator();
             ribbonPanelSystem.AddStackedItems(btn_H2V1, btn_H2V2, btn_H2V3);
 
             #endregion
+
             #region Void Enummerator
 
-            String dllPathVoids = @"C:\Epic\EpicToolsAddinForRevit\Libs\Revit_VoidEnumerator.dll";
+            String dllPathVoids;
             //String dllPathVoids = @"C:\Users\User\source\repos\_Revit\Revit_VoidEnumerator\bin\Debug\Revit_VoidEnumerator.dll";
+            //dllPathVoids = @"C:\Epic\EpicToolsAddinForRevit\Libs\Revit_VoidEnumerator.dll";
+            dllPathVoids = System.IO.Path.Combine(BaseLocation, "VoidEnum", "Revit_VoidEnumerator.dll");
 
             PushButtonData btn_VoidEnum = new PushButtonData("btn_VoidEnum", "Void ENUM", dllPathVoids, "Revit_VoidEnumerator.VoidEnum");
 
@@ -155,8 +160,9 @@ namespace Revit_EpicRibbon
 
             #region EpicLumi
 
-            //String dllPathLumi = @"C:\Epic\EpicToolsAddinForRevit\Lumi\EpicLumi.dll";
-            String dllPathLumi = @"C:\Users\xikes\source\repos\EpicLumImporter\bin\Debug\EpicLumi.dll";
+            String dllPathLumi;
+            //dllPathLumi = @"C:\Users\User\source\repos\_Revit\Revit_EpicLumImporter\bin\Debug\EpicLumi.dll";
+            dllPathLumi = System.IO.Path.Combine(BaseLocation, "Lumi", "EpicLumi.dll");
 
             PushButtonData btn_LumiMain = new PushButtonData("btn_lumiMain", "Lumi", dllPathLumi, "EpicLumi.Lumi");
             PushButtonData btn_LumiInfoBlocks = new PushButtonData("btn_lumiInfoBlocks", "nfoImp", dllPathLumi, "EpicLumi.LumiInfoImport");
@@ -188,9 +194,8 @@ namespace Revit_EpicRibbon
 
             #region LumiSnap
 
-            //String dllPathLumiSnap = @"C:\Epic\EpicToolsAddinForRevit\LumiSnap\LumiSnap.dll";
-            //String dllPathLumiSnap = @"C:\Users\xikes\source\repos\LumiSnap\bin\Debug\LumiSnap.dll";
-            String dllPathLumiSnap = dllPathLumi;
+            String dllPathLumiSnap;
+            dllPathLumiSnap = dllPathLumi;
 
             PushButtonData btn_LumiSnap = new PushButtonData("btn_lumisnap", "Lumi Snap", dllPathLumiSnap, "EpicLumi.LumiSnap");
             PushButtonData btn_LumiSnapSettings = new PushButtonData("btn_lumisnapsettings", "Settings", dllPathLumiSnap, "EpicLumi.LumiSnapSettings");
