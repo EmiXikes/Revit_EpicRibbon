@@ -239,6 +239,29 @@ namespace Revit_EpicRibbon
 
             #endregion
 
+            #region TrayTagger
+
+            String dllPathTrayTagger;
+            //dllPathLumi = @"C:\Users\User\source\repos\_Revit\Revit_EpicLumImporter\bin\Debug\EpicLumi.dll";
+            dllPathTrayTagger = System.IO.Path.Combine(BaseLocation, "TrayTagger", "TrayTagger.dll");
+
+            PushButtonData btn_TrayTag = new PushButtonData("btn_traytagger", "TrayTag", dllPathTrayTagger, "TrayTagger.TrayTag");
+            PushButtonData btn_TrayParams = new PushButtonData("btn_trayparams", "TrayParams", dllPathTrayTagger, "TrayTagger.TrayParamAdd");
+            //PushButtonData btn_LumiInfoBlocks = new PushButtonData("btn_lumiInfoBlocks", "nfoImp", dllPathTrayTagger, "EpicLumi.LumiInfoImport");
+            //PushButtonData btn_LumiAnno = new PushButtonData("btn_lumiAnno", "Tag", dllPathTrayTagger, "EpicLumi.LumiTag");
+            //PushButtonData btn_LumiAnnoUpdate = new PushButtonData("btn_lumiAnnoUpdate", "Update", dllPathTrayTagger, "EpicLumi.LumiTagUpdate");
+
+            // Create a ribbon panel
+            RibbonPanel ribbonPanelTrayT = application.CreateRibbonPanel(tabName, "Tray Tagger");
+
+            btn = ribbonPanelTrayT.AddItem(btn_TrayTag) as PushButton;
+            btn.Image = PngImageSource("Revit_EpicRibbon.ICONS.TrayTag_32.png");
+            btn = ribbonPanelTrayT.AddItem(btn_TrayParams) as PushButton;
+            
+            //btn.LargeImage = PngImageSource("Revit_EpicRibbon.ICONS.LumiMain.png");
+
+            #endregion
+
             //String ModifyTabName = "";
             //adWin.RibbonControl MyRibbon;
             //MyRibbon = Autodesk.Windows.ComponentManager.Ribbon;
