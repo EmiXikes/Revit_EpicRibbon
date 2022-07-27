@@ -7,7 +7,9 @@ using System.Activities.Presentation;
 using System.IO;
 using System.Collections.Generic;
 using System.Reflection;
-//using adWin = Autodesk.Windows;
+using Autodesk.Revit.DB.Events;
+using adWin = Autodesk.Windows;
+using System.Diagnostics;
 
 namespace Revit_EpicRibbon
 {
@@ -255,29 +257,297 @@ namespace Revit_EpicRibbon
             RibbonPanel ribbonPanelTrayT = application.CreateRibbonPanel(tabName, "Tray Tagger");
 
             btn = ribbonPanelTrayT.AddItem(btn_TrayTag) as PushButton;
-            btn.Image = PngImageSource("Revit_EpicRibbon.ICONS.TrayTag_32.png");
+            btn.LargeImage = PngImageSource("Revit_EpicRibbon.ICONS.TrayTag_32.png");
+            ribbonPanelTrayT.AddSeparator();
             btn = ribbonPanelTrayT.AddItem(btn_TrayParams) as PushButton;
-            
+            //btn.LargeImage = PngImageSource("Revit_EpicRibbon.ICONS.TrayTag_32.png");
             //btn.LargeImage = PngImageSource("Revit_EpicRibbon.ICONS.LumiMain.png");
 
             #endregion
 
-            //String ModifyTabName = "";
-            //adWin.RibbonControl MyRibbon;
-            //MyRibbon = Autodesk.Windows.ComponentManager.Ribbon;
-            //foreach (var t in MyRibbon.Tabs)
-            //{
-            //    if (t.AutomationName.Contains("Modify"))
-            //    {
-            //        t.
-            //        ModifyTabName = t.AutomationName;
-            //    }
-            //}
+            #region WallBox
+            String dllPathWallBox;
+            //dllPathLumi = @"C:\Users\User\source\repos\_Revit\Revit_EpicLumImporter\bin\Debug\EpicLumi.dll";
+            dllPathWallBox = System.IO.Path.Combine(BaseLocation, "EpicWallBox", "EpicWallBox.dll");
+            
 
+            // Bottom
+            PushButtonData btn_scBxManual_BotCenter = new PushButtonData("btn_scBxManual_BotCenter", ".", dllPathWallBox, "EpicWallBox.ManualConduitBottomCenter");
+            PushButtonData btn_scBxManual_BotLeft = new PushButtonData("btn_scBxManual_BotLeft", ".", dllPathWallBox, "EpicWallBox.ManualConduitBottomLeft");
+            PushButtonData btn_scBxManual_BotRight = new PushButtonData("btn_scBxManual_BotRight", ".", dllPathWallBox, "EpicWallBox.ManualConduitBottomRight");
 
+            // Top
+            PushButtonData btn_scBxManual_TopCenter = new PushButtonData("btn_scBxManual_TopCenter", ".", dllPathWallBox, "EpicWallBox.ManualConduitTopCenter");
+            PushButtonData btn_scBxManual_TopLeft = new PushButtonData("btn_scBxManual_TopLeft", ".", dllPathWallBox,     "EpicWallBox.ManualConduitTopLeft");
+            PushButtonData btn_scBxManual_TopRight = new PushButtonData("btn_scBxManual_TopRight", ".", dllPathWallBox,   "EpicWallBox.ManualConduitTopRight");
+
+            // Middle
+            PushButtonData btn_scBxManual_MiddleCenter = new PushButtonData("btn_scBxManual_Dummy", ".", dllPathWallBox, "EpicWallBox.ManualCenterPlaceholder");
+            PushButtonData btn_scBxManual_MiddleRight = new PushButtonData("btn_scBxManual_AddSocketRight", ".", dllPathWallBox, "EpicWallBox.ManualAddSocketBoxRight");
+            PushButtonData btn_scBxManual_MiddleLeft = new PushButtonData("btn_scBxManual_AddSocketLeft", ".", dllPathWallBox, "EpicWallBox.ManualAddSocketBoxLeft");
+
+            PushButtonData btn_scBxManual_DeleteConnected = new PushButtonData("btn_scBxManual_DeleteConnected", "Delete all Connected", dllPathWallBox, "EpicWallBox.DeleteConnected");
+            PushButtonData btn_scBxManual_Settings = new PushButtonData("btn_scBxManual_Settings", "Settings", dllPathWallBox, "EpicWallBox.WallSnapSettings");
+
+            // Create a ribbon panel
+            RibbonPanel ribbonPanelWallbox = application.CreateRibbonPanel(tabName, "Epic WallBox");
+            
+            PushButton wBbtn;
+
+            #region Stack1
+            var manualButtonsLeft = ribbonPanelWallbox.AddStackedItems(
+                btn_scBxManual_TopLeft,
+                btn_scBxManual_MiddleLeft,
+                btn_scBxManual_BotLeft);
+
+            List<ImageSource> imageSourcesManualButtonsLeft = new List<ImageSource>()
+            {
+                PngImageSource("Revit_EpicRibbon.ICONS.SocBoxLine_TopLeft_16.png"),
+                PngImageSource("Revit_EpicRibbon.ICONS.SocBoxLine_AddSocketLeft_16.png"),
+                PngImageSource("Revit_EpicRibbon.ICONS.SocBoxLine_BotLeft_16.png")
+            };
+            for (int i = 0; i < manualButtonsLeft.Count; i++)
+            {
+                var rbi = manualButtonsLeft[i];
+                wBbtn = rbi as PushButton;
+                wBbtn.Image = imageSourcesManualButtonsLeft[i];
+            }
+            #endregion
+
+            #region Stack2
+            var manualButtonsCenter = ribbonPanelWallbox.AddStackedItems(
+                btn_scBxManual_TopCenter,
+                btn_scBxManual_MiddleCenter,
+                btn_scBxManual_BotCenter);
+            List<ImageSource> imageSourcesManualCenterBot = new List<ImageSource>()
+            {
+                PngImageSource("Revit_EpicRibbon.ICONS.SocBoxLine_TopCenter_16.png"),
+                PngImageSource("Revit_EpicRibbon.ICONS.SocBoxLine_Smiley_16.png"),
+                PngImageSource("Revit_EpicRibbon.ICONS.SocBoxLine_BotCenter_16.png")
+            };
+            for (int i = 0; i < manualButtonsCenter.Count; i++)
+            {
+                var rbi = manualButtonsCenter[i];
+                wBbtn = rbi as PushButton;
+                wBbtn.Image = imageSourcesManualCenterBot[i];
+            }
+
+            #endregion
+
+            #region Stack3
+            var manualButtonsRight = ribbonPanelWallbox.AddStackedItems(
+                btn_scBxManual_TopRight,
+                btn_scBxManual_MiddleRight,
+                btn_scBxManual_BotRight);
+            List<ImageSource> imageSourcesManualButtonsRight = new List<ImageSource>()
+            {
+                PngImageSource("Revit_EpicRibbon.ICONS.SocBoxLine_TopRight_16.png"),
+                PngImageSource("Revit_EpicRibbon.ICONS.SocBoxLine_AddSocketRight_16.png"),
+                PngImageSource("Revit_EpicRibbon.ICONS.SocBoxLine_BotRight_16.png")
+            };
+            for (int i = 0; i < manualButtonsRight.Count; i++)
+            {
+                var rbi = manualButtonsRight[i];
+                wBbtn = rbi as PushButton;
+                wBbtn.Image = imageSourcesManualButtonsRight[i];
+            }
+
+            #endregion
+
+            ribbonPanelWallbox.AddSeparator();
+
+            #region Stack4
+            var manualButtonsAdditional = ribbonPanelWallbox.AddStackedItems(
+                btn_scBxManual_DeleteConnected,
+                btn_scBxManual_Settings
+                );
+
+            List<ImageSource> imageSourcesManualButtonsAdditional = new List<ImageSource>()
+            {
+                PngImageSource("Revit_EpicRibbon.ICONS.SocBoxLine_DeleteConnected_16.png"),
+                PngImageSource("Revit_EpicRibbon.ICONS.SettingsGear_16.png"),
+                
+            };
+            for (int i = 0; i < manualButtonsAdditional.Count; i++)
+            {
+                var rbi = manualButtonsAdditional[i];
+                wBbtn = rbi as PushButton;
+                wBbtn.Image = imageSourcesManualButtonsAdditional[i];
+            }
+
+            #endregion
+
+            #endregion
+
+            application.ControlledApplication.ApplicationInitialized += OnApplicationInitialized;
             return Result.Succeeded;
         }
 
+        #region adWin stuff
+        void OnApplicationInitialized(
+              object sender,
+              Autodesk.Revit.DB.Events.ApplicationInitializedEventArgs e)
+        {
+            // Find a system ribbon tab and panel to house 
+            // our API items
+            // Also find our API tab, panel and button within 
+            // the Autodesk.Windows.RibbonControl context
+
+            adWin.RibbonControl adWinRibbon
+              = adWin.ComponentManager.Ribbon;
+
+            adWin.RibbonTab adWinSysTab = null;
+            adWin.RibbonPanel adWinSysPanel = null;
+
+            adWin.RibbonTab adWinApiTab = null;
+            adWin.RibbonPanel adWinApiPanel = null;
+            adWin.RibbonItem adWinApiItem = null;
+
+            foreach (adWin.RibbonTab ribbonTab
+              in adWinRibbon.Tabs)
+            {
+                // Look for the specified system tab
+
+                if (ribbonTab.Id == "Epic Tools")
+                {
+                    adWinSysTab = ribbonTab;
+
+                    foreach (adWin.RibbonPanel ribbonPanel
+                      in ribbonTab.Panels)
+                    {
+                        // Look for the specified panel 
+                        // within the system tab
+
+                        Debug.WriteLine("Found panel: " + ribbonPanel.Source.Id);
+
+                        if (ribbonPanel.Source.Id.Contains("Epic WallBox"))
+                        {
+                            foreach (adWin.RibbonRowPanel rRowPanel in ribbonPanel.Source.Items)
+                            {
+                                foreach (var rItem in rRowPanel.Items)
+                                {
+                                    Debug.WriteLine("Found item: " + rItem.Text);
+                                    rItem.ShowText = false;
+                                }
+
+                                
+                            }
+                            adWinSysPanel = ribbonPanel;
+                        }
+                    }
+                }
+                else
+                {
+                    //// Look for our API tab
+
+                    //if (ribbonTab.Id == ApiTabName)
+                    //{
+                    //    adWinApiTab = ribbonTab;
+
+                    //    foreach (adWin.RibbonPanel ribbonPanel
+                    //      in ribbonTab.Panels)
+                    //    {
+                    //        // Look for our API panel.              
+
+                    //        // The Source.Id property of an API created 
+                    //        // ribbon panel has the following format: 
+                    //        // CustomCtrl_%[TabName]%[PanelName]
+                    //        // Where PanelName correlates with the string 
+                    //        // entered as the name of the panel at creation
+                    //        // The Source.AutomationName property can also 
+                    //        // be used as it is also a direct correlation 
+                    //        // of the panel name, but without all the cruft
+                    //        // Be sure to include any new line characters 
+                    //        // (\n) used for the panel name at creation as 
+                    //        // they still form part of the Id & AutomationName
+
+                    //        //if(ribbonPanel.Source.AutomationName 
+                    //        //  == ApiPanelName) // Alternative method
+
+                    //        if (ribbonPanel.Source.Id ==
+                    //          "CustomCtrl_%" + ApiTabName + "%" + ApiPanelName)
+                    //        {
+                    //            adWinApiPanel = ribbonPanel;
+
+                    //            foreach (adWin.RibbonItem ribbonItem
+                    //              in ribbonPanel.Source.Items)
+                    //            {
+                    //                // Look for our command button
+
+                    //                // The Id property of an API created ribbon 
+                    //                // item has the following format: 
+                    //                // CustomCtrl_%CustomCtrl_%[TabName]%[PanelName]%[ItemName]
+                    //                // Where ItemName correlates with the string 
+                    //                // entered as the first parameter (name) 
+                    //                // of the PushButtonData() constructor
+                    //                // While AutomationName correlates with 
+                    //                // the string entered as the second 
+                    //                // parameter (text) of the PushButtonData() 
+                    //                // constructor
+                    //                // Be sure to include any new line 
+                    //                // characters (\n) used for the button 
+                    //                // name and text at creation as they 
+                    //                // still form part of the ItemName 
+                    //                // & AutomationName
+
+                    //                //if(ribbonItem.AutomationName 
+                    //                //  == ApiButtonText) // alternative method
+
+                    //                if (ribbonItem.Id
+                    //                  == "CustomCtrl_%CustomCtrl_%"
+                    //                  + ApiTabName + "%" + ApiPanelName
+                    //                  + "%" + ApiButtonName)
+                    //                {
+                    //                    adWinApiItem = ribbonItem;
+                    //                }
+                    //            }
+                    //        }
+                    //    }
+                    //}
+                }
+            }
+
+            // Make sure we got everything we need
+
+            if (adWinSysTab != null
+              && adWinSysPanel != null
+              && adWinApiTab != null
+              && adWinApiPanel != null
+              && adWinApiItem != null)
+            {
+                // First we'll add the whole panel including 
+                // the button to the system tab
+
+                adWinSysTab.Panels.Add(adWinApiPanel);
+
+                // now lets also add the button itself 
+                // to a system panel
+
+                adWinSysPanel.Source.Items.Add(adWinApiItem);
+
+                // Remove panel from original API tab
+                // It can also be left there if needed, 
+                // there doesn't seem to be any problems with
+                // duplicate panels / buttons on seperate tabs 
+                // / panels respectively
+
+                adWinApiTab.Panels.Remove(adWinApiPanel);
+
+                // Remove our original API tab from the ribbon
+
+                adWinRibbon.Tabs.Remove(adWinApiTab);
+            }
+
+            // A new panel should now be added to the 
+            // specified system tab. Its command buttons 
+            // will behave as they normally would, including 
+            // API access and ExternalCommandAvailability tests. 
+            // There will also be a second copy of the command 
+            // button from the panel added to the specified 
+            // system panel.
+
+        }
+        #endregion
 
         private System.Windows.Media.ImageSource BmpImageSource(string embeddedPath)
         {
