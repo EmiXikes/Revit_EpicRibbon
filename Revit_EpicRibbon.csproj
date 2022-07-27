@@ -139,29 +139,29 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>Powershell -File "$(ProjectDir)BuildScripts\UpdateGUID.ps1" "$(ProjectDir)\Properties\AssemblyInfo.cs"
-Powershell -File "$(ProjectDir)BuildScripts\IncrementBuild.ps1" "$(ProjectDir)\Properties\AssemblyInfo.cs"</PreBuildEvent>
+    <PreBuildEvent>::Powershell -File "$(ProjectDir)BuildScripts\UpdateGUID.ps1" "$(ProjectDir)\Properties\AssemblyInfo.cs"
+::Powershell -File "$(ProjectDir)BuildScripts\IncrementBuild.ps1" "$(ProjectDir)\Properties\AssemblyInfo.cs"</PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>mkdir "C:\Users\User\source\repos\_Revit\Revit_EpicRibbon\bin\Apps\EpicWallBox"
-xcopy "$(ProjectDir)bin\Debug\*.*" "C:\Users\User\source\repos\_Revit\Revit_EpicRibbon\bin\Apps\EpicWallBox" /Y /I /E
-
-mkdir "C:\Epic\RevitAddInsSetup\2022\Apps\EpicWallBox"
-mkdir "C:\Epic\RevitAddInsSetup\2023\Apps\EpicWallBox"
-
-mkdir "C:\Epic\RevitAddIns\2022\Apps\EpicWallBox"
-mkdir "C:\Epic\RevitAddIns\2023\Apps\EpicWallBox"
-
-xcopy "$(ProjectDir)bin\Debug\*.*" "C:\Epic\RevitAddIns\2022\Ribbon" /Y /I /E
-xcopy "$(ProjectDir)bin\Debug\*.*" "C:\Epic\RevitAddIns\2022\Ribbon" /Y /I /E
-
-xcopy "$(ProjectDir)bin\Debug\*.*" "C:\Epic\RevitAddIns\2023\Ribbon" /Y /I /E
-xcopy "$(ProjectDir)bin\Debug\*.*" "C:\Epic\RevitAddIns\2023\Ribbon" /Y /I /E
-
-xcopy "$(ProjectDir)bin\Debug\*.*" "C:\Epic\RevitAddInsSetup\2022\Ribbon" /Y /I /E
-xcopy "$(ProjectDir)bin\Debug\*.*" "C:\Epic\RevitAddInsSetup\2022\Ribbon" /Y /I /E
-
-xcopy "$(ProjectDir)bin\Debug\*.*" "C:\Epic\RevitAddInsSetup\2023\Ribbon" /Y /I /E
-xcopy "$(ProjectDir)bin\Debug\*.*" "C:\Epic\RevitAddInsSetup\2023\Ribbon" /Y /I /E</PostBuildEvent>
+    <PostBuildEvent>::mkdir "C:\Users\User\source\repos\_Revit\Revit_EpicRibbon\bin\Apps\EpicWallBox"
+::xcopy "$(ProjectDir)bin\Debug\*.*" "C:\Users\User\source\repos\_Revit\Revit_EpicRibbon\bin\Apps\EpicWallBox" /Y /I /E
+::
+::mkdir "C:\Epic\RevitAddInsSetup\2022\Apps\EpicWallBox"
+::mkdir "C:\Epic\RevitAddInsSetup\2023\Apps\EpicWallBox"
+::
+::mkdir "C:\Epic\RevitAddIns\2022\Apps\EpicWallBox"
+::mkdir "C:\Epic\RevitAddIns\2023\Apps\EpicWallBox"
+::
+::xcopy "$(ProjectDir)bin\Debug\*.*" "C:\Epic\RevitAddIns\2022\Ribbon" /Y /I /E
+::xcopy "$(ProjectDir)bin\Debug\*.*" "C:\Epic\RevitAddIns\2022\Ribbon" /Y /I /E
+::
+::xcopy "$(ProjectDir)bin\Debug\*.*" "C:\Epic\RevitAddIns\2023\Ribbon" /Y /I /E
+::xcopy "$(ProjectDir)bin\Debug\*.*" "C:\Epic\RevitAddIns\2023\Ribbon" /Y /I /E
+::
+::xcopy "$(ProjectDir)bin\Debug\*.*" "C:\Epic\RevitAddInsSetup\2022\Ribbon" /Y /I /E
+::xcopy "$(ProjectDir)bin\Debug\*.*" "C:\Epic\RevitAddInsSetup\2022\Ribbon" /Y /I /E
+::
+::xcopy "$(ProjectDir)bin\Debug\*.*" "C:\Epic\RevitAddInsSetup\2023\Ribbon" /Y /I /E
+::xcopy "$(ProjectDir)bin\Debug\*.*" "C:\Epic\RevitAddInsSetup\2023\Ribbon" /Y /I /E</PostBuildEvent>
   </PropertyGroup>
 </Project>

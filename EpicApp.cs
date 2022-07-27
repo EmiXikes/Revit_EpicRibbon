@@ -422,13 +422,37 @@ namespace Revit_EpicRibbon
 
                         if (ribbonPanel.Source.Id.Contains("Epic WallBox"))
                         {
-                            foreach (adWin.RibbonRowPanel rRowPanel in ribbonPanel.Source.Items)
+                            foreach (var item in ribbonPanel.Source.Items)
                             {
-                                foreach (var rItem in rRowPanel.Items)
+                                try
                                 {
-                                    Debug.WriteLine("Found item: " + rItem.Text);
-                                    rItem.ShowText = false;
+                                    adWin.RibbonRowPanel rRowPanel = (adWin.RibbonRowPanel)item;
+                                    Debug.WriteLine("Found rowPanel with: " + rRowPanel.Items.Count + " items.");
+
+                                    foreach (var rItem in rRowPanel.Items)
+                                    {
+                                        try
+                                        {
+                                            Debug.WriteLine("Found item: " + rItem.Text);
+                                            rItem.ShowText = false;
+                                            //var btn = (adWin.RibbonButton)rItem;
+                                            //btn.Size = adWin.RibbonItemSize.Large;
+                                        }
+                                        catch (Exception)
+                                        {
+                                            Debug.WriteLine("Panel item processing error");
+                                            continue;
+                                        }
+                                    }
                                 }
+                                catch (Exception)
+                                {
+                                    Debug.WriteLine("Panel item processing error");
+                                    continue;
+                                }
+                                
+
+
 
                                 
                             }
