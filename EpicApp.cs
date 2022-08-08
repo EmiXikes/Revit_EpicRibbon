@@ -272,40 +272,120 @@ namespace Revit_EpicRibbon
             
 
             // Bottom
-            PushButtonData btn_scBxManual_BotCenter = new PushButtonData("btn_scBxManual_BotCenter", ".", dllPathWallBox, "EpicWallBox.ManualConduitBottomCenter");
-            PushButtonData btn_scBxManual_BotLeft = new PushButtonData("btn_scBxManual_BotLeft", ".", dllPathWallBox, "EpicWallBox.ManualConduitBottomLeft");
-            PushButtonData btn_scBxManual_BotRight = new PushButtonData("btn_scBxManual_BotRight", ".", dllPathWallBox, "EpicWallBox.ManualConduitBottomRight");
+            PushButtonData btn_scBxManual_ConduitBotCenter = new PushButtonData("btn_scBxManual_BotCenter", ".", dllPathWallBox, "EpicWallBox.ManualConduitBottomCenter");
+            PushButtonData btn_scBxManual_ConduitBotLeft = new PushButtonData("btn_scBxManual_BotLeft", ".", dllPathWallBox, "EpicWallBox.ManualConduitBottomLeft");
+            PushButtonData btn_scBxManual_ConduitBotRight = new PushButtonData("btn_scBxManual_BotRight", ".", dllPathWallBox, "EpicWallBox.ManualConduitBottomRight");
 
             // Top
-            PushButtonData btn_scBxManual_TopCenter = new PushButtonData("btn_scBxManual_TopCenter", ".", dllPathWallBox, "EpicWallBox.ManualConduitTopCenter");
-            PushButtonData btn_scBxManual_TopLeft = new PushButtonData("btn_scBxManual_TopLeft", ".", dllPathWallBox,     "EpicWallBox.ManualConduitTopLeft");
-            PushButtonData btn_scBxManual_TopRight = new PushButtonData("btn_scBxManual_TopRight", ".", dllPathWallBox,   "EpicWallBox.ManualConduitTopRight");
+            PushButtonData btn_scBxManual_ConduitTopCenter = new PushButtonData("btn_scBxManual_TopCenter", ".", dllPathWallBox, "EpicWallBox.ManualConduitTopCenter");
+            PushButtonData btn_scBxManual_ConduitTopLeft = new PushButtonData("btn_scBxManual_TopLeft", ".", dllPathWallBox,     "EpicWallBox.ManualConduitTopLeft");
+            PushButtonData btn_scBxManual_ConduitTopRight = new PushButtonData("btn_scBxManual_TopRight", ".", dllPathWallBox,   "EpicWallBox.ManualConduitTopRight");
 
             // Middle
-            PushButtonData btn_scBxManual_MiddleCenter = new PushButtonData("btn_scBxManual_Dummy", ".", dllPathWallBox, "EpicWallBox.ManualCenterPlaceholder");
-            PushButtonData btn_scBxManual_MiddleRight = new PushButtonData("btn_scBxManual_AddSocketRight", ".", dllPathWallBox, "EpicWallBox.ManualAddSocketBoxRight");
-            PushButtonData btn_scBxManual_MiddleLeft = new PushButtonData("btn_scBxManual_AddSocketLeft", ".", dllPathWallBox, "EpicWallBox.ManualAddSocketBoxLeft");
+            PushButtonData btn_scBxManual_AddFromPicked = new PushButtonData("btn_scBxManual_AddSocketFromPicked", ".", dllPathWallBox, "EpicWallBox.ManualAddSocketBoxFromPicked");
+            PushButtonData btn_scBxManual_AddRight = new PushButtonData("btn_scBxManual_AddSocketRight", ".", dllPathWallBox, "EpicWallBox.ManualAddSocketBoxRight");
+            PushButtonData btn_scBxManual_AddLeft = new PushButtonData("btn_scBxManual_AddSocketLeft", ".", dllPathWallBox, "EpicWallBox.ManualAddSocketBoxLeft");
 
+            // Additional
+            PushButtonData btn_scBxManual_AddTop = new PushButtonData("btn_scBxManual_AddSocketTop", "TOP", dllPathWallBox, "EpicWallBox.ManualAddSocketBoxTop");
+            PushButtonData btn_scBxManual_AddBot = new PushButtonData("btn_scBxManual_AddSocketBot", "BOT", dllPathWallBox, "EpicWallBox.ManualAddSocketBoxBot");
+
+
+            // Other
             PushButtonData btn_scBxManual_DeleteConnected = new PushButtonData("btn_scBxManual_DeleteConnected", "Delete all Connected", dllPathWallBox, "EpicWallBox.DeleteConnected");
-            PushButtonData btn_scBxManual_Settings = new PushButtonData("btn_scBxManual_Settings", "Settings", dllPathWallBox, "EpicWallBox.WallSnapSettings");
+            PushButtonData btn_scBxManual_Settings = new PushButtonData("btn_scBxManual_Settings", "SettingsX", dllPathWallBox, "EpicWallBox.WallSnapSettings");
+
+
+            PushButtonData btn_scBxManual_Empty01 = new PushButtonData("btn_scBxManual_Nothing01", "Nothing", dllPathWallBox, "EpicWallBox.EmptyPlaceholderButton");
+            PushButtonData btn_scBxManual_Empty02 = new PushButtonData("btn_scBxManual_Nothing02", "Nothing", dllPathWallBox, "EpicWallBox.EmptyPlaceholderButton");
+            PushButtonData btn_scBxManual_Empty03 = new PushButtonData("btn_scBxManual_Nothing03", "Nothing", dllPathWallBox, "EpicWallBox.EmptyPlaceholderButton");
+            PushButtonData btn_scBxManual_Empty04 = new PushButtonData("btn_scBxManual_Nothing04", "Nothing", dllPathWallBox, "EpicWallBox.EmptyPlaceholderButton");
+            PushButtonData btn_scBxManual_Empty05 = new PushButtonData("btn_scBxManual_Nothing05", "Nothing", dllPathWallBox, "EpicWallBox.EmptyPlaceholderButton");
+            PushButtonData btn_scBxManual_Empty06 = new PushButtonData("btn_scBxManual_Nothing06", "Nothing", dllPathWallBox, "EpicWallBox.EmptyPlaceholderButton");
+            PushButtonData btn_scBxManual_Empty07 = new PushButtonData("btn_scBxManual_Nothing07", "Nothing", dllPathWallBox, "EpicWallBox.EmptyPlaceholderButton");
+
+
 
             // Create a ribbon panel
-            RibbonPanel ribbonPanelWallbox = application.CreateRibbonPanel(tabName, "Epic WallBox");
+            RibbonPanel ribbonPanelWallbox = application.CreateRibbonPanel(tabName, "Epic Tools - Wall Boxes");
             
             PushButton wBbtn;
 
             #region Stack1
+            var manualButtons4 = ribbonPanelWallbox.AddStackedItems(
+                btn_scBxManual_Empty03,
+                btn_scBxManual_AddLeft,
+                btn_scBxManual_Empty04);
+            List<ImageSource> imageSourcesManualButtons4 = new List<ImageSource>()
+            {
+                PngImageSource("Revit_EpicRibbon.ICONS.Empty.png"),
+                PngImageSource("Revit_EpicRibbon.ICONS.SocBoxLine_AddSocketLeft_16.png"),
+                PngImageSource("Revit_EpicRibbon.ICONS.Empty.png")
+            };
+            for (int i = 0; i < manualButtons4.Count; i++)
+            {
+                var rbi = manualButtons4[i];
+                wBbtn = rbi as PushButton;
+                wBbtn.Image = imageSourcesManualButtons4[i];
+            }
+
+            #endregion
+
+            #region Stack2
+            var manualButtons5 = ribbonPanelWallbox.AddStackedItems(
+                btn_scBxManual_AddTop,
+                btn_scBxManual_AddFromPicked,
+                btn_scBxManual_AddBot);
+            List<ImageSource> imageSourcesManualButtons5 = new List<ImageSource>()
+            {
+                PngImageSource("Revit_EpicRibbon.ICONS.SocBoxLine_AddSocketUp_16.png"),
+                PngImageSource("Revit_EpicRibbon.ICONS.SocBoxLine_Smiley_16.png"),
+                PngImageSource("Revit_EpicRibbon.ICONS.SocBoxLine_AddSocketBot_16.png")
+            };
+            for (int i = 0; i < manualButtons5.Count; i++)
+            {
+                var rbi = manualButtons5[i];
+                wBbtn = rbi as PushButton;
+                wBbtn.Image = imageSourcesManualButtons5[i];
+            }
+
+            #endregion
+
+            #region Stack3
+            var manualButtons6 = ribbonPanelWallbox.AddStackedItems(
+                btn_scBxManual_Empty05,
+                btn_scBxManual_AddRight,
+                btn_scBxManual_Empty06);
+            List<ImageSource> imageSourcesManualButtons6 = new List<ImageSource>()
+            {
+                PngImageSource("Revit_EpicRibbon.ICONS.Empty.png"),
+                PngImageSource("Revit_EpicRibbon.ICONS.SocBoxLine_AddSocketRight_16.png"),
+                PngImageSource("Revit_EpicRibbon.ICONS.Empty.png")
+            };
+            for (int i = 0; i < manualButtons6.Count; i++)
+            {
+                var rbi = manualButtons6[i];
+                wBbtn = rbi as PushButton;
+                wBbtn.Image = imageSourcesManualButtons6[i];
+            }
+
+            #endregion
+
+            ribbonPanelWallbox.AddSeparator();
+
+            #region Stack4
             var manualButtonsLeft = ribbonPanelWallbox.AddStackedItems(
-                btn_scBxManual_TopLeft,
-                btn_scBxManual_MiddleLeft,
-                btn_scBxManual_BotLeft);
+                btn_scBxManual_ConduitTopLeft,
+                btn_scBxManual_Empty01,
+                btn_scBxManual_ConduitBotLeft);
 
             List<ImageSource> imageSourcesManualButtonsLeft = new List<ImageSource>()
             {
                 PngImageSource("Revit_EpicRibbon.ICONS.SocBoxLine_TopLeft_16.png"),
-                PngImageSource("Revit_EpicRibbon.ICONS.SocBoxLine_AddSocketLeft_16.png"),
+                PngImageSource("Revit_EpicRibbon.ICONS.Empty.png"),
                 PngImageSource("Revit_EpicRibbon.ICONS.SocBoxLine_BotLeft_16.png")
             };
+
             for (int i = 0; i < manualButtonsLeft.Count; i++)
             {
                 var rbi = manualButtonsLeft[i];
@@ -314,15 +394,15 @@ namespace Revit_EpicRibbon
             }
             #endregion
 
-            #region Stack2
+            #region Stack5
             var manualButtonsCenter = ribbonPanelWallbox.AddStackedItems(
-                btn_scBxManual_TopCenter,
-                btn_scBxManual_MiddleCenter,
-                btn_scBxManual_BotCenter);
+                btn_scBxManual_ConduitTopCenter,
+                btn_scBxManual_DeleteConnected,
+                btn_scBxManual_ConduitBotCenter);
             List<ImageSource> imageSourcesManualCenterBot = new List<ImageSource>()
             {
                 PngImageSource("Revit_EpicRibbon.ICONS.SocBoxLine_TopCenter_16.png"),
-                PngImageSource("Revit_EpicRibbon.ICONS.SocBoxLine_Smiley_16.png"),
+                PngImageSource("Revit_EpicRibbon.ICONS.SocBoxLine_DeleteConnected_16.png"),
                 PngImageSource("Revit_EpicRibbon.ICONS.SocBoxLine_BotCenter_16.png")
             };
             for (int i = 0; i < manualButtonsCenter.Count; i++)
@@ -334,15 +414,15 @@ namespace Revit_EpicRibbon
 
             #endregion
 
-            #region Stack3
+            #region Stack6
             var manualButtonsRight = ribbonPanelWallbox.AddStackedItems(
-                btn_scBxManual_TopRight,
-                btn_scBxManual_MiddleRight,
-                btn_scBxManual_BotRight);
+                btn_scBxManual_ConduitTopRight,
+                btn_scBxManual_Empty02,
+                btn_scBxManual_ConduitBotRight);
             List<ImageSource> imageSourcesManualButtonsRight = new List<ImageSource>()
             {
                 PngImageSource("Revit_EpicRibbon.ICONS.SocBoxLine_TopRight_16.png"),
-                PngImageSource("Revit_EpicRibbon.ICONS.SocBoxLine_AddSocketRight_16.png"),
+                PngImageSource("Revit_EpicRibbon.ICONS.Empty.png"),
                 PngImageSource("Revit_EpicRibbon.ICONS.SocBoxLine_BotRight_16.png")
             };
             for (int i = 0; i < manualButtonsRight.Count; i++)
@@ -356,17 +436,17 @@ namespace Revit_EpicRibbon
 
             ribbonPanelWallbox.AddSeparator();
 
-            #region Stack4
+            #region Stack7
             var manualButtonsAdditional = ribbonPanelWallbox.AddStackedItems(
-                btn_scBxManual_DeleteConnected,
-                btn_scBxManual_Settings
+                btn_scBxManual_Settings,
+                btn_scBxManual_Empty07
                 );
 
             List<ImageSource> imageSourcesManualButtonsAdditional = new List<ImageSource>()
             {
-                PngImageSource("Revit_EpicRibbon.ICONS.SocBoxLine_DeleteConnected_16.png"),
                 PngImageSource("Revit_EpicRibbon.ICONS.SettingsGear_16.png"),
-                
+                PngImageSource("Revit_EpicRibbon.ICONS.Empty.png"),
+
             };
             for (int i = 0; i < manualButtonsAdditional.Count; i++)
             {
@@ -420,7 +500,7 @@ namespace Revit_EpicRibbon
 
                         Debug.WriteLine("Found panel: " + ribbonPanel.Source.Id);
 
-                        if (ribbonPanel.Source.Id.Contains("Epic WallBox"))
+                        if (ribbonPanel.Source.Id.Contains("Epic Tools - Wall Boxes"))
                         {
                             foreach (var item in ribbonPanel.Source.Items)
                             {
