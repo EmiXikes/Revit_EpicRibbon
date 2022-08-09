@@ -294,6 +294,8 @@ namespace Revit_EpicRibbon
             // Other
             PushButtonData btn_scBxManual_DeleteConnected = new PushButtonData("btn_scBxManual_DeleteConnected", "Delete all Connected", dllPathWallBox, "EpicWallBox.DeleteConnected");
             PushButtonData btn_scBxManual_Settings = new PushButtonData("btn_scBxManual_Settings", "SettingsX", dllPathWallBox, "EpicWallBox.WallSnapSettings");
+            PushButtonData btn_scBxManual_SnapToSelected = new PushButtonData("btn_scBxManual_SnapToSelected", "Snap To Selected", dllPathWallBox, "EpicWallBox.SnapToSelected");
+            PushButtonData btn_scBxManual_ConduitToSelected = new PushButtonData("btn_scBxManual_ConduitToSelected", "Conduit To Selected", dllPathWallBox, "EpicWallBox.ConduitToSelected");
 
 
             PushButtonData btn_scBxManual_Empty01 = new PushButtonData("btn_scBxManual_Nothing01", "Nothing", dllPathWallBox, "EpicWallBox.EmptyPlaceholderButton");
@@ -303,6 +305,8 @@ namespace Revit_EpicRibbon
             PushButtonData btn_scBxManual_Empty05 = new PushButtonData("btn_scBxManual_Nothing05", "Nothing", dllPathWallBox, "EpicWallBox.EmptyPlaceholderButton");
             PushButtonData btn_scBxManual_Empty06 = new PushButtonData("btn_scBxManual_Nothing06", "Nothing", dllPathWallBox, "EpicWallBox.EmptyPlaceholderButton");
             PushButtonData btn_scBxManual_Empty07 = new PushButtonData("btn_scBxManual_Nothing07", "Nothing", dllPathWallBox, "EpicWallBox.EmptyPlaceholderButton");
+            PushButtonData btn_scBxManual_Empty08 = new PushButtonData("btn_scBxManual_Nothing08", "Nothing", dllPathWallBox, "EpicWallBox.EmptyPlaceholderButton");
+            //PushButtonData btn_scBxManual_Empty09 = new PushButtonData("btn_scBxManual_Nothing09", "Nothing", dllPathWallBox, "EpicWallBox.EmptyPlaceholderButton");
 
 
 
@@ -367,6 +371,29 @@ namespace Revit_EpicRibbon
                 var rbi = manualButtons6[i];
                 wBbtn = rbi as PushButton;
                 wBbtn.Image = imageSourcesManualButtons6[i];
+            }
+
+            #endregion
+
+            ribbonPanelWallbox.AddSeparator();
+
+            #region Stack35
+            var manualButtons65 = ribbonPanelWallbox.AddStackedItems(
+                btn_scBxManual_SnapToSelected,
+                btn_scBxManual_Empty08,
+                btn_scBxManual_ConduitToSelected
+                );
+            List<ImageSource> imageSourcesManualButtons65 = new List<ImageSource>()
+            {
+                PngImageSource("Revit_EpicRibbon.ICONS.SocBoxLine_Smiley_16.png"),
+                PngImageSource("Revit_EpicRibbon.ICONS.Empty.png"),
+                PngImageSource("Revit_EpicRibbon.ICONS.SocBoxLine_Smiley_16.png")
+            };
+            for (int i = 0; i < manualButtons65.Count; i++)
+            {
+                var rbi = manualButtons65[i];
+                wBbtn = rbi as PushButton;
+                wBbtn.Image = imageSourcesManualButtons65[i];
             }
 
             #endregion
