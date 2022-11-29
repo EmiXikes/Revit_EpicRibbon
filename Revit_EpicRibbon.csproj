@@ -147,6 +147,9 @@
     <EmbeddedResource Include="ICONS\Empty.png" />
     <EmbeddedResource Include="ICONS\SocBoxLine_AddSocketBot_16.png" />
     <EmbeddedResource Include="ICONS\SocBoxLine_AddSocketUp_16.png" />
+    <EmbeddedResource Include="ICONS\SocBoxLine_ConduitToSocket_16.png" />
+    <EmbeddedResource Include="ICONS\SocBoxLine_SnapToSelectedt_16.png" />
+    <EmbeddedResource Include="ICONS\SocBoxLine_TEST.png" />
     <Content Include="ICONS\TopRight.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
@@ -167,6 +170,10 @@ if $(Configuration) == Debug2023 goto 2023
 :2022
 mkdir "C:\Epic\RevitAddIns\2022\Apps\EpicWallBox"
 mkdir "C:\Epic\RevitAddInsSetup\2022\Apps\EpicWallBox"
+
+xcopy "$(ProjectDir)bin\Debug\*.*" "C:\Epic\RevitAddIns\2021\Ribbon" /Y /I /E
+xcopy "$(ProjectDir)bin\Debug\*.*" "C:\Epic\RevitAddInsSetup\2021\Ribbon" /Y /I /E
+
 xcopy "$(ProjectDir)bin\Debug\*.*" "C:\Epic\RevitAddIns\2022\Ribbon" /Y /I /E
 xcopy "$(ProjectDir)bin\Debug\*.*" "C:\Epic\RevitAddInsSetup\2022\Ribbon" /Y /I /E
 goto exit

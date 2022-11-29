@@ -244,27 +244,35 @@ namespace Revit_EpicRibbon
             #region TrayTagger
 
             String dllPathTrayTagger;
+            String dllPathParamWiz;
             //dllPathLumi = @"C:\Users\User\source\repos\_Revit\Revit_EpicLumImporter\bin\Debug\EpicLumi.dll";
             dllPathTrayTagger = System.IO.Path.Combine(BaseLocation, "TrayTagger", "TrayTagger.dll");
+            dllPathParamWiz = System.IO.Path.Combine(BaseLocation, "ParamWiz", "ParamWiz.dll");
 
             PushButtonData btn_TrayTag = new PushButtonData("btn_traytagger", "TrayTag", dllPathTrayTagger, "TrayTagger.TrayTag");
             PushButtonData btn_TrayParams = new PushButtonData("btn_trayparams", "TrayParams", dllPathTrayTagger, "TrayTagger.TrayParamAdd");
+            PushButtonData btn_ParamWiz = new PushButtonData("btn_ParamWiz", "Parameter Wizard", dllPathParamWiz, "ParamWiz.LaunchMainWin");
             //PushButtonData btn_LumiInfoBlocks = new PushButtonData("btn_lumiInfoBlocks", "nfoImp", dllPathTrayTagger, "EpicLumi.LumiInfoImport");
             //PushButtonData btn_LumiAnno = new PushButtonData("btn_lumiAnno", "Tag", dllPathTrayTagger, "EpicLumi.LumiTag");
             //PushButtonData btn_LumiAnnoUpdate = new PushButtonData("btn_lumiAnnoUpdate", "Update", dllPathTrayTagger, "EpicLumi.LumiTagUpdate");
 
             // Create a ribbon panel
-            RibbonPanel ribbonPanelTrayT = application.CreateRibbonPanel(tabName, "Tray Tagger");
+            RibbonPanel ribbonPanelTrayT = application.CreateRibbonPanel(tabName, "Epic Parameter Wizard");
 
             btn = ribbonPanelTrayT.AddItem(btn_TrayTag) as PushButton;
             btn.LargeImage = PngImageSource("Revit_EpicRibbon.ICONS.TrayTag_32.png");
             ribbonPanelTrayT.AddSeparator();
             btn = ribbonPanelTrayT.AddItem(btn_TrayParams) as PushButton;
+            btn.LargeImage = PngImageSource("Revit_EpicRibbon.ICONS.TrayTag_32.png");
+            ribbonPanelTrayT.AddSeparator();
+            btn = ribbonPanelTrayT.AddItem(btn_ParamWiz) as PushButton;
+            btn.LargeImage = PngImageSource("Revit_EpicRibbon.ICONS.TrayTag_32.png");
             //btn.LargeImage = PngImageSource("Revit_EpicRibbon.ICONS.TrayTag_32.png");
             //btn.LargeImage = PngImageSource("Revit_EpicRibbon.ICONS.LumiMain.png");
 
             #endregion
 
+            
             #region WallBox
             String dllPathWallBox;
             //dllPathLumi = @"C:\Users\User\source\repos\_Revit\Revit_EpicLumImporter\bin\Debug\EpicLumi.dll";
@@ -296,6 +304,10 @@ namespace Revit_EpicRibbon
             PushButtonData btn_scBxManual_Settings = new PushButtonData("btn_scBxManual_Settings", "SettingsX", dllPathWallBox, "EpicWallBox.WallSnapSettings");
             PushButtonData btn_scBxManual_SnapToSelected = new PushButtonData("btn_scBxManual_SnapToSelected", "Snap To Selected", dllPathWallBox, "EpicWallBox.SnapToSelected");
             PushButtonData btn_scBxManual_ConduitToSelected = new PushButtonData("btn_scBxManual_ConduitToSelected", "Conduit To Selected", dllPathWallBox, "EpicWallBox.ConduitToSelected");
+            
+            PushButtonData btn_scBxManual_ConduitTest = new PushButtonData("btn_scBxManual_ConduitTest", "Conduit TEST", dllPathWallBox, "EpicWallBox.ConduitTest03");
+            
+            PushButtonData btn_scBxManual_VerticalConduit = new PushButtonData("btn_scBxManual_VerticalConduit", "Conduit Vertical", dllPathWallBox, "EpicWallBox.ManualAddVerticalConduitFromPicked");
 
 
             PushButtonData btn_scBxManual_Empty01 = new PushButtonData("btn_scBxManual_Nothing01", "Nothing", dllPathWallBox, "EpicWallBox.EmptyPlaceholderButton");
@@ -305,7 +317,7 @@ namespace Revit_EpicRibbon
             PushButtonData btn_scBxManual_Empty05 = new PushButtonData("btn_scBxManual_Nothing05", "Nothing", dllPathWallBox, "EpicWallBox.EmptyPlaceholderButton");
             PushButtonData btn_scBxManual_Empty06 = new PushButtonData("btn_scBxManual_Nothing06", "Nothing", dllPathWallBox, "EpicWallBox.EmptyPlaceholderButton");
             PushButtonData btn_scBxManual_Empty07 = new PushButtonData("btn_scBxManual_Nothing07", "Nothing", dllPathWallBox, "EpicWallBox.EmptyPlaceholderButton");
-            PushButtonData btn_scBxManual_Empty08 = new PushButtonData("btn_scBxManual_Nothing08", "Nothing", dllPathWallBox, "EpicWallBox.EmptyPlaceholderButton");
+            //PushButtonData btn_scBxManual_Empty08 = new PushButtonData("btn_scBxManual_Nothing08", "Nothing", dllPathWallBox, "EpicWallBox.EmptyPlaceholderButton");
             //PushButtonData btn_scBxManual_Empty09 = new PushButtonData("btn_scBxManual_Nothing09", "Nothing", dllPathWallBox, "EpicWallBox.EmptyPlaceholderButton");
 
 
@@ -380,14 +392,14 @@ namespace Revit_EpicRibbon
             #region Stack35
             var manualButtons65 = ribbonPanelWallbox.AddStackedItems(
                 btn_scBxManual_SnapToSelected,
-                btn_scBxManual_Empty08,
+                btn_scBxManual_ConduitTest,
                 btn_scBxManual_ConduitToSelected
                 );
             List<ImageSource> imageSourcesManualButtons65 = new List<ImageSource>()
             {
-                PngImageSource("Revit_EpicRibbon.ICONS.SocBoxLine_Smiley_16.png"),
-                PngImageSource("Revit_EpicRibbon.ICONS.Empty.png"),
-                PngImageSource("Revit_EpicRibbon.ICONS.SocBoxLine_Smiley_16.png")
+                PngImageSource("Revit_EpicRibbon.ICONS.SocBoxLine_SnapToSelectedt_16.png"),
+                PngImageSource("Revit_EpicRibbon.ICONS.SocBoxLine_TEST.png"),
+                PngImageSource("Revit_EpicRibbon.ICONS.SocBoxLine_ConduitToSocket_16.png")
             };
             for (int i = 0; i < manualButtons65.Count; i++)
             {
@@ -396,6 +408,12 @@ namespace Revit_EpicRibbon
                 wBbtn.Image = imageSourcesManualButtons65[i];
             }
 
+            #endregion
+
+            #region Stack36
+            var manualButtons36 = ribbonPanelWallbox.AddItem(
+                btn_scBxManual_VerticalConduit
+                );
             #endregion
 
             ribbonPanelWallbox.AddSeparator();
